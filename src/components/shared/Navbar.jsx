@@ -30,7 +30,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 max-w-7xl mx-auto z-50 backdrop-blur-md bg-accent shadow-md">
+    <div className="fixed top-0 left-0 right-0 mx-auto z-50 backdrop-blur-md bg-accent shadow-md shadow-primary/20">
       <div className="navbar max-w-9xl mx-auto">
         <div className="navbar-start">
           {/* Mobile Dropdown */}
@@ -63,7 +63,7 @@ const Navbar = () => {
 
         {/* End (Theme + Button) */}
         <div className="navbar-end flex items-center gap-3">
-          <ul className="menu hidden lg:flex menu-horizontal px-1 text-xl">
+          <ul className="menu hidden lg:flex menu-horizontal px-1 text-xl border-r-2 border-secondary/50">
             {links}
           </ul>
           <Theme />
