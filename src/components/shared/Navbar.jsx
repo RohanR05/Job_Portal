@@ -1,6 +1,7 @@
 import Link from "next/link";
 import React from "react";
 import Logo from "./Logo";
+import Theme from "../Theme/Theme";
 
 const Navbar = () => {
   const links = (
@@ -46,6 +47,7 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1">{links}</ul>
         </div>
         <div className="navbar-end">
+          <Theme></Theme>
           <a className="btn">Button</a>
         </div>
       </div>
