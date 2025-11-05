@@ -24,7 +24,7 @@ export default function Theme() {
   }, [theme, mounted]);
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === "light" ? "dark" : "light"));
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   if (!mounted) return null;
@@ -32,13 +32,13 @@ export default function Theme() {
   return (
     <button
       onClick={toggleTheme}
-      className="btn btn-ghost btn-circle"
+      className="btn btn-ghost btn-circle border border-secondary"
       aria-label="Toggle Theme"
     >
       {theme === "light" ? (
         <Moon className="w-5 h-5 text-primary" />
       ) : (
-        <Sun className="w-5 h-5 text-yellow-400" />
+        <Sun className="w-5 h-5 text-primary" />
       )}
     </button>
   );
