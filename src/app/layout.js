@@ -25,7 +25,9 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <Navbar></Navbar>
-        <main>{children}</main>
+        <div className="max-w-7xl mx-auto bg-accent">
+          <main>{children}</main>
+        </div>
         <Footer></Footer>
       </body>
     </html>
