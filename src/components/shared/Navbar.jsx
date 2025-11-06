@@ -4,6 +4,7 @@ import React from "react";
 import Logo from "./Logo";
 import Theme from "../Theme/Theme";
 import { FaHome, FaUserCheck, FaTachometerAlt } from "react-icons/fa";
+import Login from "../Auth/Login";
 
 const Navbar = () => {
   const links = (
@@ -67,7 +68,7 @@ const Navbar = () => {
             {links}
           </ul>
           <Theme />
-          <button className="btn btn-secondary text-white px-4">Join</button>
+          <Login></Login>
         </div>
       </div>
     </div>
