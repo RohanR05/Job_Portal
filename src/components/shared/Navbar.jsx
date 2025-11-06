@@ -30,7 +30,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 mx-auto z-50 backdrop-blur-md bg-accent shadow-md shadow-primary/20">
+    <div className="fixed top-0 left-0 right-0 mx-auto z-50 backdrop-blur-md bg-accent/30 shadow shadow-primary/20">
       <div className="navbar max-w-9xl mx-auto">
         <div className="navbar-start">
           {/* Mobile Dropdown */}

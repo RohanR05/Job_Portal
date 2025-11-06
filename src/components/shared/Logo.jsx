@@ -1,10 +1,13 @@
+"use client";
 import Link from "next/link";
 import React from "react";
+import { FaBriefcase } from "react-icons/fa6";
 
 const Logo = () => {
   return (
     <div>
-      <Link href={"/"}>
+      <Link href={"/"} className="flex items-center gap-2">
+        <FaBriefcase className="text-secondary text-3xl" />
         <h2 className="text-2xl font-semibold md:text-3xl lg:text-4xl md:font-bold text-primary">
           Intern<span className="text-secondary">Bangla</span>
         </h2>
