@@ -1,13 +1,20 @@
 "use client";
 import React from "react";
 import Lottie from "lottie-react";
+import { motion } from "framer-motion";
 import animi from "../../../public/Screening.json";
 
 const Banner = () => {
   return (
     <div className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-6 md:px-12 py-10 md:py-20 bg-gradient-to-r from-primary/15 via-secondary/15 to-neutral/10 backdrop-blur-md shadow-md">
       {/* Left Text Section */}
-      <div className="md:w-1/2 text-center md:text-left space-y-4">
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        viewport={{ once: true }}
+        className="md:w-1/2 text-center md:text-left space-y-4"
+      >
         <h1 className="text-3xl md:text-5xl font-bold text-primary leading-tight">
           Find Your <span className="text-secondary">Dream Internship</span>
         </h1>
@@ -18,16 +25,22 @@ const Banner = () => {
         <button className="btn btn-secondary text-white px-6 mt-4">
           Get Started
         </button>
-      </div>
+      </motion.div>
 
       {/* Right Animation Section */}
-      <div className="md:w-1/2 flex justify-center mt-10 md:mt-0">
+      <motion.div
+        initial={{ opacity: 0, x: 50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+        viewport={{ once: true }}
+        className="md:w-1/2 flex justify-center mt-10 md:mt-0"
+      >
         <Lottie
           animationData={animi}
           loop={true}
           className="w-full max-w-md drop-shadow-xl"
         />
-      </div>
+      </motion.div>
     </div>
   );
 };
