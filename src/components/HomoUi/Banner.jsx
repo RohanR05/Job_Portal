@@ -16,7 +16,7 @@ const Banner = () => {
         className="md:w-1/2 text-center md:text-left space-y-4"
       >
         <h1 className="text-3xl md:text-5xl font-bold text-primary leading-tight">
-          Find Your <span className="text-secondary">Dream Internship</span>
+          Sorry <span className="text-secondary">Having some Database issu</span>
         </h1>
         <p className="text-neutral/70 text-lg md:w-4/5 mx-auto md:mx-0">
           Explore verified internships and entry-level job opportunities in
