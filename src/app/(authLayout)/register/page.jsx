@@ -122,6 +122,58 @@ const Register = () => {
           )}
         </div>
 
+        {/* Gender */}
+        <div>
+          <label className="block font-semibold mb-2 text-secondary">
+            Gender
+          </label>
+          <select
+            {...register("gender", { required: "Gender is required" })}
+            className="select select-bordered w-full"
+          >
+            <option value="">Select your gender</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+          {errors.gender && (
+            <p className="text-red-500 text-sm">{errors.gender.message}</p>
+          )}
+        </div>
+
+        {/* Birth Date */}
+        <div>
+          <label className="block font-semibold mb-2 text-secondary">
+            Date of Birth
+          </label>
+          <input
+            type="date"
+            {...register("birth", { required: "Birth date is required" })}
+            className="input input-bordered w-full"
+          />
+          {errors.birth && (
+            <p className="text-red-500 text-sm">{errors.birth.message}</p>
+          )}
+        </div>
+
+        {/* Nationality */}
+        <div>
+          <label className="block font-semibold mb-2 text-secondary">
+            Nationality
+          </label>
+          <input
+            type="text"
+            placeholder="Enter your nationality"
+            {...register("nationality", { required: "Nationality is required" })}
+            className="input input-bordered w-full"
+          />
+          {errors.nationality && (
+            <p className="text-red-500 text-sm">
+              {errors.nationality.message}
+            </p>
+          )}
+        </div>
+
         {/* Submit Button */}
         <div className="text-center">
           <button type="submit" className="btn btn-secondary px-8 text-white">
