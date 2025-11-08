@@ -10,10 +10,10 @@ const AuthLayout = ({ children }) => {
     <div className="flex flex-col md:flex-row items-center justify-center text-info overflow-hidden max-w-7xl border rounded-2xl shadow-2xl shadow-primary/50 m-3 md:mx-auto p-2 md:p-12">
       {/* Left Side - Animation */}
       <div className="w-full md:w-2/3 flex flex-col justify-center items-center p-6 relative text-center">
-        <div className="absolute top-6 left-6">
+        <div className="absolute -top-2 left-6">
           <Link href="/">
             <button className="btn btn-sm btn-outline border-primary text-primary hover:bg-primary hover:text-neutral">
-              ← Home
+              <span className="text-secondary font-bold text-xl"> ←</span> Home
             </button>
           </Link>
         </div>
