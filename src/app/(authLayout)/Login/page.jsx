@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import Swal from "sweetalert2";
+import Link from "next/link";
 
 const Login = () => {
   const {
@@ -85,6 +86,12 @@ const Login = () => {
         >
           Login
         </button>
+        <h2 className="text-neutral font-medium">
+          Don't have an account? Click Here{" "}
+          <span className="text-secondary underline text-lg">
+            <Link href={"/register"}>Register</Link>{" "}
+          </span>
+        </h2>
       </form>
     </div>
   );
