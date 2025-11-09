@@ -4,7 +4,7 @@ import React from "react";
 import Logo from "./Logo";
 import Theme from "../Theme/Theme";
 import { FaHome, FaUserCheck, FaTachometerAlt } from "react-icons/fa";
-import Login from "@/app/(authLayout)/Login/page";
+import Login from "@/app/(authLayout)/login/page";
 import Register from "@/app/(authLayout)/register/page";
 
 const Navbar = () => {
@@ -69,7 +69,9 @@ const Navbar = () => {
             {links}
           </ul>
           <Theme />
-          <Login></Login>
+          <Link href={"/login"}>
+            <button className="btn">Login</button>
+          </Link>
           <Link href={"/register"}>
             <button className="btn">Register</button>
           </Link>

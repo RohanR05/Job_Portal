@@ -19,11 +19,11 @@ export const authOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        const { username, password } = credentials;
+        const { email, password } = credentials;
 
         // Find user by username
         const user = await dbConnect(collectionNames.USER).findOne({
-          username,
+          email,
         });
         if (!user) return null;
 
