@@ -1,10 +1,10 @@
-import dbConnect from "@/app/lib/dbConnect";
+import dbConnect, { collectionNames } from "@/app/lib/dbConnect";
 import { getServerSession } from "next-auth";
 
 const UserInfo = async () => {
   const session = await getServerSession();
 
-  const datall = dbConnect("allUsers"); // your collection name
+  const datall = dbConnect(collectionNames.USER); // your collection name
   const data = await datall.find({}).toArray();
 
   return (

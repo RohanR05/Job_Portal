@@ -1,39 +1,80 @@
+// "use server";
+
+import dbConnect, { collectionNames } from "@/app/lib/dbConnect";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs"; // for hashed password comparison
 
 export const authOptions = {
   providers: [
     CredentialsProvider({
-      // The name to display on the sign in form (e.g. "Sign in with...")
       name: "Credentials",
-      // `credentials` is used to generate a form on the sign in page.
-      // You can specify which fields should be submitted, by adding keys to the `credentials` object.
-      // e.g. domain, username, password, 2FA token, etc.
-      // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
         username: { label: "Username", type: "text", placeholder: "jsmith" },
-        email: { label: "Email", type: "email", placeholder: "Emial" },
+        email: {
+          label: "Email",
+          type: "email",
+          placeholder: "jsmith@example.com",
+        },
         password: { label: "Password", type: "password" },
       },
-      async authorize(credentials, req) {
-        console.log(credentials);
-        // Add logic here to look up the user from the credentials supplied
-        const user = { id: "1", name: "J Smith", email: "jsmith@example.com" };
+      async authorize(credentials) {
+        const { username, password } = credentials;
 
-        if (user) {
-          // Any object returned will be saved in `user` property of the JWT
-          return user;
-        } else {
-          // If you return null then an error will be displayed advising the user to check their details.
-          return null;
+        // Find user by username
+        const user = await dbConnect(collectionNames.USER).findOne({
+          username,
+        });
+        if (!user) return null;
 
-          // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
-        }
+        // Compare password (plain text or hashed)
+        // If using hashed passwords:
+        // const isPasswordOK = await bcrypt.compare(password, user.password);
+        const isPasswordOK = password === user.password; // replace with bcrypt for production
+
+        if (!isPasswordOK) return null;
+
+        // Return a plain object (convert ObjectId to string)
+        return {
+          id: user._id.toString(),
+          username: user.username,
+          email: user.email,
+          role: user.role || "user", // default role
+        };
       },
     }),
   ],
+
+  callbacks: {
+    async jwt({ token, user }) {
+      // On sign in, add username and role to the token
+      if (user) {
+        token.id = user.id;
+        token.username = user.username;
+        token.role = user.role;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      // Pass username and role to the session
+      session.user.id = token.id;
+      session.user.username = token.username;
+      session.user.role = token.role;
+      return session;
+    },
+  },
+
+  session: {
+    strategy: "jwt", // use JWT strategy
+  },
+
+  pages: {
+    signIn: "/login", // custom login page
+    error: "/login?error", // error redirect
+  },
+
+  secret: process.env.NEXTAUTH_SECRET, // make sure you set this in .env
 };
 
 const handler = NextAuth(authOptions);
-
 export { handler as GET, handler as POST };
