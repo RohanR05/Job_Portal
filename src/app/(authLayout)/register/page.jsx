@@ -1,4 +1,5 @@
 "use client";
+import registerUser from "@/app/actions/auth/register";
 import React from "react";
 import { useForm } from "react-hook-form";
 import {
@@ -21,8 +22,11 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    console.log("User Data:", data);
+  const onSubmit =async (payload) => {
+    // console.log("User Data:", payload);
+    // payload.preventDefault()
+    const result = await registerUser(payload);
+    console.log(result)
     reset();
   };
 

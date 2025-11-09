@@ -4,7 +4,7 @@ import { getServerSession } from "next-auth";
 const UserInfo = async () => {
   const session = await getServerSession();
 
-  const datall = dbConnect("allUser"); // your collection name
+  const datall = dbConnect("allUsers"); // your collection name
   const data = await datall.find({}).toArray();
 
   return (
