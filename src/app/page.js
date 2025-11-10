@@ -2,7 +2,7 @@ import Banner from "@/components/HomoUi/Banner";
 import FAQ from "@/components/HomoUi/FAQ";
 import UserInfo from "@/components/UserInfo";
 import { getServerSession } from "next-auth";
-import { authOptions } from "./api/auth/[...nextauth]/route";
+import { authOptions } from "./lib/authOptions";
 
 export default async function Home() {
   const session = await getServerSession(authOptions);
