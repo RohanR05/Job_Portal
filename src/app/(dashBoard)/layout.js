@@ -1,11 +1,17 @@
-import React from 'react'
+// (dashBoard)/layout.jsx
+import React from "react";
 
-const DashLayout = () => {
+export const metadata = {
+  title: "DashBoard",
+};
+
+const DashLayout = ({ children }) => {
   return (
-    <div>
-      DashBoard
+    <div className="">
+      {/* You can add your own dashboard-specific navbar if needed */}
+      <main>{children}</main>
     </div>
-  )
-}
+  );
+};
 
-export default DashLayout
+export default DashLayout;

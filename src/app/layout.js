@@ -21,6 +21,10 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const hide = ["/login", "/register", "/dashBoard"].includes(
+    typeof window !== "undefined" ? window.location.pathname : ""
+  );
+
   return (
     <html lang="en" className="bg-accent">
       <NextAuthSessionProvider>
@@ -28,13 +32,13 @@ export default function RootLayout({ children }) {
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
           {/* Navbar (fixed) */}
-          <Navbar />
+          {!hide && <Navbar />}
 
           {/* Main Content */}
           <main className="max-w-7xl mx-auto bg-accent mt-18">{children}</main>
 
           {/* Footer */}
-          <Footer />
+          {!hide && <Footer />}
         </body>
       </NextAuthSessionProvider>
     </html>
