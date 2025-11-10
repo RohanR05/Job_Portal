@@ -5,6 +5,7 @@ import { signIn } from "next-auth/react";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Login = () => {
   const {
@@ -12,6 +13,10 @@ const Login = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
 
   const onSubmit = async (data) => {
     const res = await signIn("credentials", {
@@ -34,12 +39,15 @@ const Login = () => {
         text: "Login successful",
         confirmButtonColor: "#98CD00",
         timer: 1500,
+        showConfirmButton: false,
+      }).then(() => {
+        router.push(callbackUrl); // 🔥 redirect to original path or home
       });
     }
   };
 
   return (
-    <div className=" w-full mx-auto">
+    <div className="w-full mx-auto">
       <h2 className="text-3xl font-bold text-center text-primary mb-6">
         Login to Your Account
       </h2>
@@ -86,10 +94,11 @@ const Login = () => {
         >
           Login
         </button>
+
         <h2 className="text-neutral font-medium">
-          Do not have an account? Click Here{" "}
+          Don’t have an account?{" "}
           <span className="text-secondary underline text-lg">
-            <Link href={"/register"}>Register</Link>{" "}
+            <Link href="/register">Register</Link>
           </span>
         </h2>
       </form>
