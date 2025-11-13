@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import {
   FaUser,
@@ -22,14 +22,43 @@ const RegisterForm = ({ onSubmit }) => {
     formState: { errors },
   } = useForm();
 
+  const [uploading, setUploading] = useState(false);
+
   const handleFormSubmit = async (data) => {
     try {
-      // set default role
-      const payload = { ...data, role: "user" };
+      setUploading(true);
+
+      // Upload image to ImgBB
+      const imageFile = data.image[0];
+      const formData = new FormData();
+      formData.append("image", imageFile);
+
+      const res = await fetch(
+        `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const result = await res.json();
+      if (!result.success) throw new Error("Image upload failed");
+
+      const imageUrl = result.data.display_url;
+
+      // Replace the File object with URL
+      const payload = {
+        ...data,
+        image: imageUrl,
+        role: "user",
+      };
+
       await onSubmit(payload);
       reset();
     } catch (err) {
       console.error("Register error:", err);
+    } finally {
+      setUploading(false);
     }
   };
 
@@ -118,39 +147,19 @@ const RegisterForm = ({ onSubmit }) => {
         )}
       </div>
 
-      {/* Image */}
+      {/* Image File Upload */}
       <div>
         <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-          <FaImage className="text-secondary" /> Profile Image URL
+          <FaImage className="text-secondary" /> Profile Image
         </label>
         <input
-          type="url"
-          placeholder="Enter image URL"
-          {...register("image", { required: "Image URL is required" })}
-          className="input input-bordered w-full text-neutral"
+          type="file"
+          accept="image/*"
+          {...register("image", { required: "Image is required" })}
+          className="file-input file-input-bordered w-full text-neutral"
         />
         {errors.image && (
           <p className="text-red-500 text-sm">{errors.image.message}</p>
-        )}
-      </div>
-
-      {/* Education */}
-      <div>
-        <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-          <FaGraduationCap className="text-secondary" /> Education
-        </label>
-        <select
-          {...register("education", { required: "Education is required" })}
-          className="select select-bordered w-full text-neutral"
-        >
-          <option value="">Select your qualification</option>
-          <option value="SSC">SSC</option>
-          <option value="HSC">HSC</option>
-          <option value="Honours">Honours</option>
-          <option value="Masters">Masters</option>
-        </select>
-        {errors.education && (
-          <p className="text-red-500 text-sm">{errors.education.message}</p>
         )}
       </div>
 
@@ -188,29 +197,14 @@ const RegisterForm = ({ onSubmit }) => {
         )}
       </div>
 
-      {/* Nationality */}
-      <div>
-        <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-          <FaFlag className="text-secondary" /> Nationality
-        </label>
-        <input
-          type="text"
-          placeholder="Enter your nationality"
-          {...register("nationality", { required: "Nationality is required" })}
-          className="input input-bordered w-full text-neutral"
-        />
-        {errors.nationality && (
-          <p className="text-red-500 text-sm">{errors.nationality.message}</p>
-        )}
-      </div>
-
       {/* Submit Button */}
       <div className="md:col-span-2 text-center mt-6">
         <button
           type="submit"
           className="btn w-full btn-secondary btn-outline font-semibold"
+          disabled={uploading}
         >
-          Register
+          {uploading ? "Uploading..." : "Register"}
         </button>
       </div>
     </form>

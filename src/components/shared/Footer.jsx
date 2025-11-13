@@ -64,13 +64,13 @@ const Footer = () => {
               </Link>
             </li>
             <li className="font-medium md:font-semibold text-primary hover:text-secondary transition-all">
-              <Link href={"/dashboard"} className="flex items-center gap-2">
+              <Link href={"/dashBoard"} className="flex items-center gap-2">
                 <FaTachometerAlt className="text-secondary text-lg" />
                 Dashboard
               </Link>
             </li>
             <li className="font-medium md:font-semibold text-primary hover:text-secondary transition-all">
-              <Link href={"/aboutUs"} className="flex items-center gap-2">
+              <Link href={"/"} className="flex items-center gap-2">
                 <FaTachometerAlt className="text-secondary text-lg" />
                 About Us
               </Link>
