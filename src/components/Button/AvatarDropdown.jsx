@@ -25,7 +25,7 @@ const AvatarDropdown = () => {
         alt={session.user.username || "User"}
         width={40}
         height={40}
-        className="rounded-full cursor-pointer border-2 border-secondary"
+        className="rounded-full cursor-pointer border-2 border-primary"
         onClick={toggleDropdown}
       />
 

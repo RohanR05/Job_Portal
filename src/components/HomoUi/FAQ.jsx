@@ -20,21 +20,21 @@ const FAQ = () => {
   ];
 
   return (
-    <div className="max-w-7xl mx-auto px-2">
-      <h2 className="text-3xl font-bold text-center mb-8 text-primary">
-        Frequently Asked <span className="text-secondary">Questions</span>
+    <div className="max-w-7xl mx-auto px-2 text-secondary">
+      <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+        Frequently Asked <span className="text-primary">Questions</span>
       </h2>
       <div className="space-y-4">
         {faqs.map((faq, index) => (
           <div
             key={index}
-            className="collapse collapse-plus bg-accent/10 border border-primary/10 rounded-xl"
+            className="collapse collapse-plus bg-accent/10 border border-primary/50 rounded-xl"
           >
             <input type="checkbox" className="peer" />
             <div className="collapse-title text-lg font-medium text-secondary">
               {faq.question}
             </div>
-            <div className="collapse-content text-neutral/80">
+            <div className="collapse-content font-medium text-primary">
               <p>{faq.answer}</p>
             </div>
           </div>

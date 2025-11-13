@@ -4,16 +4,16 @@
 
 @plugin "daisyui/theme" {
   name: "light";
-  --color-primary: #0A70a9;
-  --color-secondary:#00a000;
-  --color-accent:#fff;
-  --color-neutral:#000;
+  --color-primary: #00a000;
+  --color-secondary:#1f1f1f;
+  --color-accent:#00f00010;
+  --color-neutral:#fff;
 }
 
 @plugin "daisyui/theme" {
   name: "dark";
-  --color-primary: #0f7faf;
-  --color-secondary:#78C841;
-  --color-accent:#000;
-  --color-neutral:#fff;
+  --color-primary: #00a000;
+  --color-secondary:#e0e0e0;
+  --color-accent:#00a00010;
+  --color-neutral:#000;
 }

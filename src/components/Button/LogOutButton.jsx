@@ -23,7 +23,7 @@ const LogOutButton = () => {
     <div>
       <button
         onClick={handleLogout}
-        className="btn btn-outline btn-primary bg-accent"
+        className="btn btn-outline btn-primary bg-neutral"
       >
         LogOut
       </button>

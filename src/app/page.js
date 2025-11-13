@@ -7,10 +7,10 @@ import { authOptions } from "./lib/authOptions";
 export default async function Home() {
   const session = await getServerSession(authOptions);
   return (
-    <div>
+    <div className="bg-neutral">
       <Banner></Banner>
-      <UserInfo></UserInfo>
-      <h2>Server side</h2>
+      {/* <UserInfo></UserInfo> */}
+      {/* <h2>Server side</h2> */}
       {/* <p>{JSON.stringify(session)}</p> */}
       <FAQ></FAQ>
     </div>

@@ -6,7 +6,7 @@ import animi from "../../../public/Screening.json";
 
 const Banner = () => {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-6 md:px-12 py-10 md:py-20 bg-gradient-to-r from-primary/15 via-secondary/15 to-neutral/10 backdrop-blur-md shadow-md">
+    <div className="flex flex-col md:flex-row items-center justify-between max-w-7xl mx-auto px-6 md:px-2 py-10 md:py-20 text-secondary">
       {/* Left Text Section */}
       <motion.div
         initial={{ opacity: 0, x: -50 }}
@@ -16,13 +16,14 @@ const Banner = () => {
         className="md:w-1/2 text-center md:text-left space-y-4"
       >
         <h1 className="text-3xl md:text-5xl font-bold text-primary leading-tight">
-          Sorry <span className="text-secondary">Having some Database issu</span>
+          Sorry{" "}
+          <span className="text-secondary">Having some Database issu</span>
         </h1>
-        <p className="text-neutral/70 text-lg md:w-4/5 mx-auto md:mx-0">
+        <p className="text-lg md:w-4/5 mx-auto md:mx-0">
           Explore verified internships and entry-level job opportunities in
           Bangladesh. Build your career with confidence and skill.
         </p>
-        <button className="btn btn-secondary text-white px-6 mt-4">
+        <button className="btn btn-primary btn-outline px-6 mt-4">
           Get Started
         </button>
       </motion.div>

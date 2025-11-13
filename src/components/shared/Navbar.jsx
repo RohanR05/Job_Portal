@@ -14,21 +14,21 @@ const Navbar = () => {
 
   const links = (
     <>
-      <li className="font-medium md:font-semibold text-primary hover:text-secondary transition-all">
+      <li className="font-medium md:font-semibold text-secondary transition-all">
         <Link href={"/"} className="flex items-center gap-2">
-          <FaHome className="text-secondary text-lg" />
+          <FaHome className="text-primary text-lg" />
           Home
         </Link>
       </li>
-      <li className="font-medium md:font-semibold text-primary hover:text-secondary transition-all">
+      <li className="font-medium md:font-semibold text-secondary transition-all">
         <Link href={"/apply"} className="flex items-center gap-2">
-          <FaUserCheck className="text-secondary text-lg" />
+          <FaUserCheck className="text-primary text-lg" />
           Apply
         </Link>
       </li>
-      <li className="font-medium md:font-semibold text-primary hover:text-secondary transition-all">
+      <li className="font-medium md:font-semibold text-secondary transition-all">
         <Link href={"/dashBoard"} className="flex items-center gap-2">
-          <FaTachometerAlt className="text-secondary text-lg" />
+          <FaTachometerAlt className="text-primary text-lg" />
           Dashboard
         </Link>
       </li>
@@ -36,7 +36,7 @@ const Navbar = () => {
   );
 
   return (
-    <div className="fixed top-0 left-0 right-0 mx-auto z-50 backdrop-blur-md bg-accent/30 shadow shadow-primary/20">
+    <div className="fixed top-0 left-0 right-0 mx-auto z-50 backdrop-blur-md bg-neutral/40 shadow-md shadow-primary/20">
       <div className="navbar max-w-9xl mx-auto">
         <div className="navbar-start">
           {/* Mobile Dropdown */}
@@ -63,7 +63,7 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={-1}
-              className="menu menu-sm dropdown-content bg-accent rounded-box z-1 mt-3 w-52 p-2 shadow"
+              className="menu menu-sm dropdown-content bg-neutral rounded-box z-1 mt-3 w-52 p-2 shadow"
             >
               {links}
             </ul>
@@ -72,8 +72,8 @@ const Navbar = () => {
         </div>
 
         {/* End (Theme + Button) */}
-        <div className="navbar-end flex items-center gap-3">
-          <ul className="menu hidden lg:flex menu-horizontal px-1 text-xl border-r-2 border-secondary/50">
+        <div className="navbar-end flex w-full items-center gap-3">
+          <ul className="menu hidden lg:flex menu-horizontal px-1 text-xl border-r-2 border-primary/50">
             {links}
           </ul>
           <Theme />

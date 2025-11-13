@@ -7,9 +7,9 @@ const Logo = () => {
   return (
     <div>
       <Link href={"/"} className="flex items-center gap-1 md:gap-2">
-        <FaBriefcase className="text-secondary text-xl md:text-3xl" />
-        <h2 className="text-2xl font-semibold md:text-3xl lg:text-4xl md:font-bold text-primary">
-          Intern<span className="text-secondary">Bangla</span>
+        <FaBriefcase className="text-primary text-xl md:text-3xl" />
+        <h2 className="text-2xl font-semibold md:text-3xl lg:text-4xl md:font-bold text-secondary">
+          Intern<span className="text-primary">Bangla</span>
         </h2>
       </Link>
     </div>
