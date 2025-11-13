@@ -11,7 +11,7 @@ export default async function Home() {
       <Banner></Banner>
       <UserInfo></UserInfo>
       <h2>Server side</h2>
-      <p>{JSON.stringify(session)}</p>
+      {/* <p>{JSON.stringify(session)}</p> */}
       <FAQ></FAQ>
     </div>
   );

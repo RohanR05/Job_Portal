@@ -11,13 +11,19 @@ const AvatarDropdown = () => {
 
   const toggleDropdown = () => setOpen(!open);
 
+  // If user is NOT logged in, show login button
+  if (!session?.user) {
+    return <LoginButton className="px-4 py-2 rounded btn-secondary" />;
+  }
+
+  // If user is logged in, show avatar + dropdown
   return (
     <div className="relative">
       {/* Avatar */}
       <Image
-        src={session?.user?.image || "/default-avatar.png"}
-        alt={session?.user?.username || "User"}
-        width={40} // adjust size
+        src={session.user.image || "/default-avatar.png"}
+        alt={session.user.username || "User"}
+        width={40}
         height={40}
         className="rounded-full cursor-pointer border-2 border-secondary"
         onClick={toggleDropdown}
@@ -25,13 +31,9 @@ const AvatarDropdown = () => {
 
       {/* Dropdown */}
       {open && (
-        <div className="absolute right-0 mt-2 z-50">
-          <div className="flex flex-col items-center justify-center">
-            {session?.user ? (
-              <LogOutButton/>
-            ) : (
-              <LoginButton/>
-            )}
+        <div className="absolute right-0 mt2 z-50">
+          <div className="flex flex-col">
+            <LogOutButton className="" />
           </div>
         </div>
       )}

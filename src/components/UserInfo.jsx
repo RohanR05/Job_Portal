@@ -10,7 +10,7 @@ const UserInfo = async () => {
   return (
     <div className="p-4">
       <h2 className="text-lg font-bold mb-2">Session Info</h2>
-      <pre>{JSON.stringify(session, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(session, null, 2)}</pre> */}
 
       <h2 className="text-lg font-bold mt-4">All Users</h2>
       <ul>
