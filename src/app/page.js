@@ -7,7 +7,7 @@ import { authOptions } from "./lib/authOptions";
 export default async function Home() {
   const session = await getServerSession(authOptions);
   return (
-    <div className="bg-neutral">
+    <div className="bg-neutral mt-16 md:mt-12">
       <Banner></Banner>
       {/* <UserInfo></UserInfo> */}
       {/* <h2>Server side</h2> */}

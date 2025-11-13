@@ -21,7 +21,7 @@ const Navbar = () => {
         </Link>
       </li>
       <li className="font-medium md:font-semibold text-secondary transition-all">
-        <Link href={"/apply"} className="flex items-center gap-2">
+        <Link href={"/applyJob"} className="flex items-center gap-2">
           <FaUserCheck className="text-primary text-lg" />
           Apply
         </Link>

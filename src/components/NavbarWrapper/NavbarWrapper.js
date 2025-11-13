@@ -15,7 +15,7 @@ export default function NavbarWrapper({ children }) {
   return (
     <>
       {!hide && <Navbar />}
-      <main className="max-w-7xl mx-auto bg-accent mt-18">{children}</main>
+      <main className="max-w-7xl mx-auto bg-accent">{children}</main>
       {!hide && <Footer />}
     </>
   );

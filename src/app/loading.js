@@ -5,7 +5,7 @@ import animi from "../../public/Liquid 4 Dot Loader.json";
 
 const Loading = () => {
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md bg-primary/15">
+    <div className="fixed inset-0 z-50 flex items-center justify-center backdrop-blur-md bg-primary/10">
       <div className="w-48 h-48">
         <Lottie animationData={animi} loop className="w-full h-full" />
       </div>
