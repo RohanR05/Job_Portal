@@ -30,24 +30,25 @@ const Login = () => {
         icon: "error",
         title: "Login Failed",
         text: "Invalid email or password",
-        confirmButtonColor: "#0f7fbf",
+        confirmButtonColor: "#00a000", // primary
       });
     } else {
       Swal.fire({
         icon: "success",
         title: "Welcome Back!",
         text: "Login successful",
-        confirmButtonColor: "#98CD00",
+        confirmButtonColor: "#00a000", // primary
         timer: 1500,
         showConfirmButton: false,
       }).then(() => {
-        router.push(callbackUrl); // 🔥 redirect to original path or home
+        router.push(callbackUrl);
       });
     }
   };
 
   return (
-    <div className="w-full mx-auto">
+    <div className="w-full mx-auto max-w-2xl">
+      {/* Title */}
       <h2 className="text-3xl font-bold text-center text-primary mb-6">
         Login to Your Account
       </h2>
@@ -56,13 +57,13 @@ const Login = () => {
         {/* Email */}
         <div>
           <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-            <FaEnvelope className="text-secondary" /> Email
+            <FaEnvelope className="text-primary" /> Email
           </label>
           <input
             type="email"
             placeholder="Enter your email"
             {...register("email", { required: "Email is required" })}
-            className="input input-bordered w-full text-neutral"
+            className="input input-bordered w-full bg-neutral text-secondary placeholder-secondary/70"
           />
           {errors.email && (
             <p className="text-red-500 text-sm mt-1">{errors.email.message}</p>
@@ -72,13 +73,13 @@ const Login = () => {
         {/* Password */}
         <div>
           <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-            <FaLock className="text-secondary" /> Password
+            <FaLock className="text-primary" /> Password
           </label>
           <input
             type="password"
             placeholder="Enter your password"
             {...register("password", { required: "Password is required" })}
-            className="input input-bordered w-full text-neutral"
+            className="input input-bordered w-full bg-neutral text-secondary placeholder-secondary/70"
           />
           {errors.password && (
             <p className="text-red-500 text-sm mt-1">
@@ -90,16 +91,20 @@ const Login = () => {
         {/* Submit */}
         <button
           type="submit"
-          className="btn btn-secondary btn-outline w-full font-semibold"
+          className="btn btn-primary w-full font-semibold text-neutral"
         >
           Login
         </button>
 
-        <h2 className="text-neutral font-medium">
+        {/* Register Link */}
+        <h2 className="text-secondary text-center font-medium">
           Don’t have an account?{" "}
-          <span className="text-secondary underline text-lg">
-            <Link href="/register">Register</Link>
-          </span>
+          <Link
+            href="/register"
+            className="text-primary underline font-semibold hover:text-secondary"
+          >
+            Register
+          </Link>
         </h2>
       </form>
     </div>

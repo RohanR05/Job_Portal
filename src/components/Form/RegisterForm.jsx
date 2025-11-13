@@ -65,18 +65,18 @@ const RegisterForm = ({ onSubmit }) => {
   return (
     <form
       onSubmit={handleSubmit(handleFormSubmit)}
-      className="grid md:grid-cols-2 gap-8"
+      className="grid md:grid-cols-2 gap-8 text-neutral"
     >
       {/* Username */}
       <div>
         <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-          <FaUser className="text-secondary" /> Username
+          <FaUser className="text-primary" /> Username
         </label>
         <input
           type="text"
           placeholder="Enter your username"
           {...register("username", { required: "Username is required" })}
-          className="input input-bordered w-full text-neutral"
+          className="input input-bordered w-full text-secondary"
         />
         {errors.username && (
           <p className="text-red-500 text-sm">{errors.username.message}</p>
@@ -86,13 +86,13 @@ const RegisterForm = ({ onSubmit }) => {
       {/* Email */}
       <div>
         <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-          <FaEnvelope className="text-secondary" /> Email
+          <FaEnvelope className="text-primary" /> Email
         </label>
         <input
           type="email"
           placeholder="Enter your email"
           {...register("email", { required: "Email is required" })}
-          className="input input-bordered w-full text-neutral"
+          className="input input-bordered w-full text-secondary"
         />
         {errors.email && (
           <p className="text-red-500 text-sm">{errors.email.message}</p>
@@ -102,13 +102,13 @@ const RegisterForm = ({ onSubmit }) => {
       {/* Password */}
       <div>
         <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-          <FaLock className="text-secondary" /> Password
+          <FaLock className="text-primary" /> Password
         </label>
         <input
           type="password"
           placeholder="Enter your password"
           {...register("password", { required: "Password is required" })}
-          className="input input-bordered w-full text-neutral"
+          className="input input-bordered w-full text-secondary"
         />
         {errors.password && (
           <p className="text-red-500 text-sm">{errors.password.message}</p>
@@ -118,13 +118,13 @@ const RegisterForm = ({ onSubmit }) => {
       {/* Phone */}
       <div>
         <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-          <FaPhone className="text-secondary" /> Phone
+          <FaPhone className="text-primary" /> Phone
         </label>
         <input
           type="tel"
           placeholder="Enter your phone"
           {...register("phone", { required: "Phone number is required" })}
-          className="input input-bordered w-full text-neutral"
+          className="input input-bordered w-full text-secondary"
         />
         {errors.phone && (
           <p className="text-red-500 text-sm">{errors.phone.message}</p>
@@ -134,13 +134,13 @@ const RegisterForm = ({ onSubmit }) => {
       {/* Address */}
       <div>
         <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-          <FaHome className="text-secondary" /> Address
+          <FaHome className="text-primary" /> Address
         </label>
         <input
           type="text"
           placeholder="Enter your address"
           {...register("address", { required: "Address is required" })}
-          className="input input-bordered w-full text-neutral"
+          className="input input-bordered w-full text-secondary"
         />
         {errors.address && (
           <p className="text-red-500 text-sm">{errors.address.message}</p>
@@ -150,13 +150,13 @@ const RegisterForm = ({ onSubmit }) => {
       {/* Image File Upload */}
       <div>
         <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-          <FaImage className="text-secondary" /> Profile Image
+          <FaImage className="text-primary" /> Profile Image
         </label>
         <input
           type="file"
           accept="image/*"
           {...register("image", { required: "Image is required" })}
-          className="file-input file-input-bordered w-full text-neutral"
+          className="file-input file-input-bordered w-full text-secondary"
         />
         {errors.image && (
           <p className="text-red-500 text-sm">{errors.image.message}</p>
@@ -166,16 +166,22 @@ const RegisterForm = ({ onSubmit }) => {
       {/* Gender */}
       <div>
         <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-          <FaVenusMars className="text-secondary" /> Gender
+          <FaVenusMars className="text-primary" /> Gender
         </label>
         <select
           {...register("gender", { required: "Gender is required" })}
-          className="select select-bordered w-full text-neutral"
+          className="select select-bordered w-full text-secondary"
         >
           <option value="">Select your gender</option>
-          <option value="Male">Male</option>
-          <option value="Female">Female</option>
-          <option value="Other">Other</option>
+          <option value="Male" className="text-primary font-semibold">
+            Male
+          </option>
+          <option value="Female" className="text-primary font-semibold">
+            Female
+          </option>
+          <option value="Other" className="text-primary font-semibold">
+            Other
+          </option>
         </select>
         {errors.gender && (
           <p className="text-red-500 text-sm">{errors.gender.message}</p>
@@ -185,12 +191,12 @@ const RegisterForm = ({ onSubmit }) => {
       {/* Birth */}
       <div>
         <label className="flex items-center gap-2 font-semibold text-primary mb-2">
-          <FaBirthdayCake className="text-secondary" /> Date of Birth
+          <FaBirthdayCake className="text-primary" /> Date of Birth
         </label>
         <input
           type="date"
           {...register("birth", { required: "Birth date is required" })}
-          className="input input-bordered w-full text-neutral"
+          className="input input-bordered w-full text-secondary"
         />
         {errors.birth && (
           <p className="text-red-500 text-sm">{errors.birth.message}</p>
@@ -201,7 +207,7 @@ const RegisterForm = ({ onSubmit }) => {
       <div className="md:col-span-2 text-center mt-6">
         <button
           type="submit"
-          className="btn w-full btn-secondary btn-outline font-semibold"
+          className="btn w-full btn-primary btn-outline font-semibold"
           disabled={uploading}
         >
           {uploading ? "Uploading..." : "Register"}

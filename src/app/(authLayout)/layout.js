@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const AuthLayout = ({ children }) => {
   return (
-    <div className="flex flex-col md:flex-row items-center justify-center text-info overflow-hidden max-w-7xl border rounded-2xl shadow-2xl shadow-primary/50 m-3 md:mx-auto p-2 md:p-12 -mt-12">
+    <div className="flex flex-col md:flex-row mx-w-6xl items-center justify-center overflow-hidden bg-accent m-3 md:mx-auto p-2 md:p-12 -mt-12  rounded-2xl shadow-lg shadow-secondary/50">
       {/* Left Side - Animation */}
       <div className="w-full md:w-2/3 flex flex-col justify-center items-center p-6 relative text-center">
         <div className="absolute -top-2 left-6 my-2">

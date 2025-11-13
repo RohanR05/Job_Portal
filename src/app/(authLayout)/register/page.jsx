@@ -12,7 +12,7 @@ const Register = () => {
 
   return (
     <div className="mx-auto w-full">
-      <h2 className="text-4xl font-bold text-primary text-center mb-8">
+      <h2 className="text-3xl font-bold text-primary text-center mb-8">
         Create an Account
       </h2>
       <RegisterForm onSubmit={handleRegister} />
