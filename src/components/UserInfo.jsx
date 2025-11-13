@@ -15,7 +15,7 @@ const UserInfo = async () => {
       <h2 className="text-lg font-bold mt-4">All Users</h2>
       <ul>
         {data.map((u, i) => (
-          <li key={i}>{u.email}</li>
+            <li key={i}>{u.email}</li>
         ))}
       </ul>
     </div>

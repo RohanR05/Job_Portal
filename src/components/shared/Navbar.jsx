@@ -4,8 +4,13 @@ import React from "react";
 import Logo from "./Logo";
 import Theme from "../Theme/Theme";
 import { FaHome, FaUserCheck, FaTachometerAlt } from "react-icons/fa";
+import { useSession } from "next-auth/react";
+import LoginButton from "../Button/LoginButton";
+import LogOutButton from "../Button/LogOutButton";
 
 const Navbar = () => {
+  const { data: session } = useSession();
+
   const links = (
     <>
       <li className="font-medium md:font-semibold text-primary hover:text-secondary transition-all">
@@ -67,9 +72,7 @@ const Navbar = () => {
             {links}
           </ul>
           <Theme />
-          <Link href={"/login"}>
-            <button className="btn btn-secondary btn-outline">Login</button>
-          </Link>
+          {session?.user ? <LogOutButton /> : <LoginButton />}
         </div>
       </div>
     </div>
