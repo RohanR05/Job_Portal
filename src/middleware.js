@@ -26,5 +26,5 @@ export async function middleware(req) {
 
 // Apply middleware to /apply and its subroutes
 export const config = {
-  matcher: ["/apply/:path*", "/apply"],
+  matcher: ["/applyJob/:path*", "/apply"],
 };

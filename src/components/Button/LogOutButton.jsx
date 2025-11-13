@@ -14,7 +14,20 @@ const LogOutButton = () => {
       confirmButtonText: "Yes, logout",
     }).then((result) => {
       if (result.isConfirmed) {
-        signOut({ callbackUrl: "/" }); // redirect after logout
+        signOut({ callbackUrl: "/" });
+
+        // ✅ Toast notification after confirming logout
+        Swal.fire({
+          toast: true,
+          position: "top-end",
+          icon: "success",
+          title: "Logged out successfully",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          background: "#fff",
+          color: "#127957",
+        });
       }
     });
   };
