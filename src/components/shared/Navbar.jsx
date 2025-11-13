@@ -5,9 +5,7 @@ import Logo from "./Logo";
 import Theme from "../Theme/Theme";
 import { FaHome, FaUserCheck, FaTachometerAlt } from "react-icons/fa";
 import { useSession } from "next-auth/react";
-import LoginButton from "../Button/LoginButton";
-import LogOutButton from "../Button/LogOutButton";
-import Image from "next/image";
+import AvatarDropdown from "../Button/AvatarDropdown";
 
 const Navbar = () => {
   const { data: session, status } = useSession();
@@ -75,14 +73,7 @@ const Navbar = () => {
             {links}
           </ul>
           <Theme />
-          <Image
-            src={session?.user?.image || "/default-avatar.png"} // image source (required)
-            alt={session?.user?.name || "User"} // alt text (required)
-            width={40} // width (required)
-            height={40} // height (required)
-            className="rounded-full cursor-pointer"
-          />
-          {session?.user ? <LogOutButton /> : <LoginButton />}
+          <AvatarDropdown></AvatarDropdown>
         </div>
       </div>
     </div>

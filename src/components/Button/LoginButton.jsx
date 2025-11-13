@@ -6,7 +6,7 @@ const LoginButton = () => {
     <div>
       <Link href={"/login"}>
         {" "}
-        <button className="btn btn-outline btn-primary">Login</button>
+        <button className="btn btn-outline btn-primary bg-accent">Login</button>
       </Link>
     </div>
   );
