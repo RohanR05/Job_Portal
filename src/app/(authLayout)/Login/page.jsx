@@ -6,6 +6,7 @@ import { FaEnvelope, FaLock } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import GoogleButton from "@/components/Button/GoogleButton";
 
 const Login = () => {
   const {
@@ -44,12 +45,6 @@ const Login = () => {
         router.push(callbackUrl);
       });
     }
-  };
-
-  const handleGoogleLogin = async () => {
-    await signIn("google", {
-      callbackUrl: "/",
-    });
   };
 
   return (
@@ -101,12 +96,7 @@ const Login = () => {
         >
           Login
         </button>
-        <button
-          className="btn btn-primary btn-outline"
-          onClick={handleGoogleLogin}
-        >
-          Sing in with google
-        </button>
+        <GoogleButton></GoogleButton>
 
         {/* Register Link */}
         <h2 className="text-secondary text-center font-medium">
