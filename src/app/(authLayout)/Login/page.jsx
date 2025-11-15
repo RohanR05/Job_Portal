@@ -46,6 +46,12 @@ const Login = () => {
     }
   };
 
+  const handleGoogleLogin = async () => {
+    await signIn("google", {
+      callbackUrl: "/",
+    });
+  };
+
   return (
     <div className="w-full mx-auto max-w-2xl">
       {/* Title */}
@@ -94,6 +100,12 @@ const Login = () => {
           className="btn btn-primary w-full font-semibold text-neutral"
         >
           Login
+        </button>
+        <button
+          className="btn btn-primary btn-outline"
+          onClick={handleGoogleLogin}
+        >
+          Sing in with google
         </button>
 
         {/* Register Link */}

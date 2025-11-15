@@ -21,7 +21,7 @@ const AvatarDropdown = () => {
     <div className="relative">
       {/* Avatar */}
       <Image
-        src={session.user.image || "/default-avatar.png"}
+        src={session.user.image || "/1.jpg"}
         alt={session.user.username || "User"}
         width={40}
         height={40}

@@ -5,7 +5,9 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "i.ibb.co", // your ImgBB domain
-        pathname: "/**",      // allow all paths
+        pathname: "/**",
+        protocol: "https",
+        hostname: "lh3.googleusercontent.com", // allow all paths
       },
     ],
   },
