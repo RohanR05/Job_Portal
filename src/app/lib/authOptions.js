@@ -45,6 +45,37 @@ export const authOptions = {
   ],
 
   callbacks: {
+    async signIn({ user, account, profile, email, credentials }) {
+      if (account?.provider === "google") {
+        const userCollection = dbConnect(collectionNames.USER);
+        const existingUser = await userCollection.findOne({
+          email: user.email,
+        });
+
+        if (!existingUser) {
+          const newUser = {
+            username: user.name || "No Name",
+            email: user.email,
+            password: "",
+            phone: "",
+            address: "",
+            image: user.image,
+            gender: "",
+            birth: "",
+            nationality: "",
+            role: "user",
+            education: "",
+            createdAt: new Date(),
+          };
+
+          const result = await userCollection.insertOne(newUser);
+          user._id = result.insertedId.toString();
+        } else {
+          user._id = existingUser._id.toString();
+        }
+      }
+      return true;
+    },
     // Store full user object in JWT token
     async jwt({ token, user }) {
       if (user) {
