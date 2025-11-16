@@ -7,7 +7,7 @@ export const metadata = {
 
 const DashLayout = ({ children }) => {
   return (
-    <div className="">
+    <div className="bg-neutral">
       {/* You can add your own dashboard-specific navbar if needed */}
       <main>{children}</main>
     </div>

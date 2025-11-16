@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className="bg-neutral">
       <NextAuthSessionProvider>
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral`}>
           <NavbarWrapper>{children}</NavbarWrapper>
         </body>
       </NextAuthSessionProvider>
