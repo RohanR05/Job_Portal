@@ -10,17 +10,17 @@ const DashBoardProfile = async () => {
   if (!session) return <p>You are not logged in</p>;
 
   return (
-    <div className="flex-col w-full flex shadow-lg  rounded-2xl bg-accent">
+    <div className="w-full shadow-lg  rounded-2xl bg-accent">
       {session.user.image && (
         <Image
           src={session.user.image}
           alt={session.user.name}
-          width={150}
-          height={150}
+          width={100}
+          height={100}
           className="rounded-full"
         />
       )}{" "}
-      <div className="flex w-full justify-evenly text-xl font-semibold">
+      <div className="w-full text-xl font-semibold">
         {" "}
         <h2>{session.user.name}</h2>
         <h2>Role: {session.user.role || "user"}</h2>

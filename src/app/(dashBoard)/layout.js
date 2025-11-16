@@ -12,10 +12,19 @@ const DashLayout = ({ children }) => {
       <li>
         {" "}
         <Link
-          href="/job"
-          className="flex items-center gap-2 text-secondary text-lg font-medium bg-neutral/50 hover:text-primary transition-transform duration-200 hover:scale-105"
+          href="/dashBoard"
+          className="flex items-center gap-2 text-secondary text-lg font-medium bg-accent hover:text-primary transition-transform duration-200 hover:scale-105"
         >
           DashBoard
+        </Link>
+      </li>
+      <li>
+        {" "}
+        <Link
+          href="/"
+          className="flex items-center gap-2 text-secondary text-lg font-medium bg-accent hover:text-primary transition-transform duration-200 hover:scale-105"
+        >
+          Back Home
         </Link>
       </li>
     </>
