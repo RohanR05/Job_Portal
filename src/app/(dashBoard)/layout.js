@@ -1,18 +1,23 @@
 // (dashBoard)/layout.jsx
 import React from "react";
 import DashBoardProfile from "./dashBoardProfile/page";
-
-export const metadata = {
-  title: "DashBoard",
-};
+import Link from "next/link";
 
 const DashLayout = ({ children }) => {
   const links = (
     <>
       <li>
         <DashBoardProfile></DashBoardProfile>
+      </li>{" "}
+      <li>
+        {" "}
+        <Link
+          href="/job"
+          className="flex items-center gap-2 text-secondary text-lg font-medium bg-neutral/50 hover:text-primary transition-transform duration-200 hover:scale-105"
+        >
+          DashBoard
+        </Link>
       </li>
-      <li>hi</li>
     </>
   );
   return (
@@ -25,7 +30,7 @@ const DashLayout = ({ children }) => {
             <label
               htmlFor="my-drawer-2"
               aria-label="open sidebar"
-              className="btn btn-square btn-ghost"
+              className="btn btn-square btn-primary btn-ghost"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -43,12 +48,7 @@ const DashLayout = ({ children }) => {
             </label>
           </div>
           <div className="mx-2 flex-1 px-2">Navbar Title</div>
-          <div className="hidden flex-none lg:block">
-            <ul className="menu menu-horizontal">
-              {/* Navbar menu content here */}
-              {links}
-            </ul>
-          </div>
+          <div className="hidden flex-non bg-red-50 lg:block"></div>
         </div>
         {children}
       </div>
@@ -58,7 +58,7 @@ const DashLayout = ({ children }) => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-accent min-h-full w-80 p-4">
+        <ul className="menu bg-accent backdrop-blur-md min-h-full w-80 p-4 gap-3">
           {/* Sidebar content here */}
           {links}
         </ul>
