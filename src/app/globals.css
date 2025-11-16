@@ -6,7 +6,7 @@
   name: "light";
   --color-primary: #00a000;
   --color-secondary:#1f1f1f;
-  --color-accent:#00f00005;
+  --color-accent:#00f00020;
   --color-neutral:#fff;
 }
 
@@ -14,6 +14,6 @@
   name: "dark";
   --color-primary: #00a000;
   --color-secondary:#e0e0e0;
-  --color-accent:#00a00010;
-  --color-neutral:#000;
+  --color-accent:#00a00020;
+  --color-neutral:#000; 
 }

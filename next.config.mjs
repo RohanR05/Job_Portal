@@ -4,10 +4,13 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "i.ibb.co", // your ImgBB domain
+        hostname: "i.ibb.co",
         pathname: "/**",
+      },
+      {
         protocol: "https",
-        hostname: "lh3.googleusercontent.com", // allow all paths
+        hostname: "lh3.googleusercontent.com",
+        pathname: "/**",
       },
     ],
   },

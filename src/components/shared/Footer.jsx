@@ -11,7 +11,7 @@ import {
 
 const Footer = () => {
   return (
-    <div className="bg-neutral px-6 flex flex-col items-center">
+    <div className="bg-accent px-6 flex flex-col items-center">
       {/* upper section */}
       <div className="py-10 flex flex-col gap-10 md:flex-row md:items-start md:justify-between md:w-full md:gap-5">
         {/* web developer */}
