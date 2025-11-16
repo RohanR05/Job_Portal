@@ -1,5 +1,6 @@
 // (dashBoard)/layout.jsx
 import React from "react";
+import DashBoardProfile from "./dashBoardProfile/page";
 
 export const metadata = {
   title: "DashBoard",
@@ -8,15 +9,18 @@ export const metadata = {
 const DashLayout = ({ children }) => {
   const links = (
     <>
+      <li>
+        <DashBoardProfile></DashBoardProfile>
+      </li>
       <li>hi</li>
     </>
   );
   return (
-    <div className="drawer lg:drawer-open">
+    <div className="drawer lg:drawer-open bg-neutral">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Page content here */}
-        <div className="navbar bg-base-300 w-full lg:hidden">
+        <div className="navbar bg-accent w-full lg:hidden">
           <div className="flex-none lg:hidden">
             <label
               htmlFor="my-drawer-2"
@@ -54,7 +58,7 @@ const DashLayout = ({ children }) => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className="menu bg-base-200 min-h-full w-80 p-4">
+        <ul className="menu bg-accent min-h-full w-80 p-4">
           {/* Sidebar content here */}
           {links}
         </ul>
