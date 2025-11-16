@@ -22,7 +22,7 @@ const GoogleButton = () => {
 
     setLoading(true);
 
-    await signIn("google", { callbackUrl: "/" });
+    await signIn("google", { callbackUrl: "/dashBoard" });
   };
 
   return (

@@ -17,7 +17,7 @@ const Login = () => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/";
+  const callbackUrl = searchParams.get("callbackUrl") || "/dashBoard";
 
   const onSubmit = async (data) => {
     const res = await signIn("credentials", {
