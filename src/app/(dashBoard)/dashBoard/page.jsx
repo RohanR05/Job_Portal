@@ -1,6 +1,5 @@
 import Link from "next/link";
 import React from "react";
-import DashBoardProfile from "../dashBoardProfile/page";
 
 const page = () => {
   return (
