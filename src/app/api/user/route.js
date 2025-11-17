@@ -1,27 +1,20 @@
+import { authOptions } from "@/app/lib/authOptions";
 import dbConnect, { collectionNames } from "@/app/lib/dbConnect";
-import { auth } from "@/auth";
+import { getServerSession } from "next-auth";
 
-export async function Get() {
-  try {
-    const session = await auth();
-    if (!session || !session.user?.email) {
-      return Response.json(
-        {
-          message: "Not authenticated",
-        },
-        {
-          status: 401,
-        }
-      );
-    }
-    const userCollection = dbConnect(collectionNames.USER);
+export async function GET() {
+  const session = await getServerSession(authOptions)// works only in server
 
-    const user = await userCollection.findOne(
-      { email: session.user.email },
-      { projection: { password: 0 } }
-    );
-    return Response.json(user);
-  } catch (err) {
-    return Response.json({ error: err.message }, { status: 500 });
+  if (!session?.user?.email) {
+    return Response.json({ message: "Unauthorized" }, { status: 401 });
   }
+
+  const users = dbConnect(collectionNames.USER);
+
+  const user = await users.findOne(
+    { email: session.user.email },
+    { projection: { password: 0 } }
+  );
+
+  return Response.json(user);
 }
