@@ -8,16 +8,16 @@ export async function middleware(req) {
   // ✅ Define which routes need protection
   const isProtectedRoute = pathname.startsWith("/applyJob") || pathname === "/apply";
 
-  // 🧩 Not logged in → redirect to login with callback
-  if (isProtectedRoute && !token) {
-    const loginUrl = new URL("/login", req.url);
-    loginUrl.searchParams.set("callbackUrl", req.url);
-    return NextResponse.redirect(loginUrl);
-  }
+  // ✅ Prevent redirect loops: do not redirect if already on /login
+  const isLoginPage = pathname === "/login";
 
-  // 🧩 Logged in but not a 'user' role
-  if (isProtectedRoute && token?.role !== "user") {
-    return NextResponse.redirect(new URL("/", req.url));
+  // 🧩 Not logged in → redirect to login with callback
+  if (isProtectedRoute && !token && !isLoginPage) {
+    const loginUrl = new URL("/login", req.url);
+
+    // Avoid nesting callbackUrl
+    loginUrl.searchParams.set("callbackUrl", req.nextUrl.pathname);
+    return NextResponse.redirect(loginUrl);
   }
 
   // ✅ Allow access

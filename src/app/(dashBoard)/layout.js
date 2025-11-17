@@ -4,6 +4,20 @@ import DashBoardProfile from "./dashBoardProfile/page";
 import Link from "next/link";
 
 const DashLayout = ({ children }) => {
+
+    const { data: session, status } = useSession();
+
+  useEffect(() => {
+    if (status === "unauthenticated") {
+      signIn(); // redirect to login
+    }
+  }, [status]);
+
+  if (status === "loading" || status === "unauthenticated") {
+    return <p>Loading...</p>; // optional loading state
+  }
+
+
   const links = (
     <>
       <li>

@@ -1,7 +1,7 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Link from "next/link";
@@ -9,6 +9,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import GoogleButton from "@/components/Button/GoogleButton";
 
 const Login = () => {
+  const { data: session, status } = useSession();
   const {
     register,
     handleSubmit,
@@ -17,7 +18,17 @@ const Login = () => {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/dashBoard";
+
+  // ✅ Read and sanitize callbackUrl
+  const rawCallbackUrl = searchParams.get("callbackUrl") || "/dashBoard";
+  const callbackUrl = rawCallbackUrl.includes("/login") ? "/dashBoard" : rawCallbackUrl;
+
+  // ✅ Redirect if already logged in
+  useEffect(() => {
+    if (status === "authenticated") {
+      router.push(callbackUrl);
+    }
+  }, [status, router, callbackUrl]);
 
   const onSubmit = async (data) => {
     const res = await signIn("credentials", {
@@ -31,14 +42,14 @@ const Login = () => {
         icon: "error",
         title: "Login Failed",
         text: "Invalid email or password",
-        confirmButtonColor: "#00a000", // primary
+        confirmButtonColor: "#00a000",
       });
     } else {
       Swal.fire({
         icon: "success",
         title: "Welcome Back!",
         text: "Login successful",
-        confirmButtonColor: "#00a000", // primary
+        confirmButtonColor: "#00a000",
         timer: 1500,
         showConfirmButton: false,
       }).then(() => {
@@ -49,13 +60,11 @@ const Login = () => {
 
   return (
     <div className="w-full mx-auto max-w-2xl">
-      {/* Title */}
       <h2 className="text-3xl font-bold text-center text-primary mb-6">
         Login to Your Account
       </h2>
 
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-        {/* Email */}
         <div>
           <label className="flex items-center gap-2 font-semibold text-primary mb-2">
             <FaEnvelope className="text-primary" /> Email
@@ -71,7 +80,6 @@ const Login = () => {
           )}
         </div>
 
-        {/* Password */}
         <div>
           <label className="flex items-center gap-2 font-semibold text-primary mb-2">
             <FaLock className="text-primary" /> Password
@@ -89,16 +97,15 @@ const Login = () => {
           )}
         </div>
 
-        {/* Submit */}
         <button
           type="submit"
           className="btn btn-primary w-full font-semibold text-neutral"
         >
           Login
         </button>
-        <GoogleButton></GoogleButton>
 
-        {/* Register Link */}
+        <GoogleButton />
+
         <h2 className="text-secondary text-center font-medium">
           Don’t have an account?{" "}
           <Link
