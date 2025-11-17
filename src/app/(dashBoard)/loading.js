@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Lottie from "lottie-react";
-import animi from "../../public/Liquid 4 Dot Loader.json";
+import animi from "../../../public/Liquid 4 Dot Loader.json";
 
 const Loading = () => {
   return (
