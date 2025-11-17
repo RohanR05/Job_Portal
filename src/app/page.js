@@ -1,17 +1,10 @@
 import Banner from "@/components/HomoUi/Banner";
 import FAQ from "@/components/HomoUi/FAQ";
-import UserInfo from "@/components/UserInfo";
-import { getServerSession } from "next-auth";
-import { authOptions } from "./lib/authOptions";
 
 export default async function Home() {
-  const session = await getServerSession(authOptions);
   return (
-    <div className="bg-neutral mt-16 md:mt-12">
+    <div className="bg-neutral my-16 md:my-12">
       <Banner></Banner>
-      {/* <UserInfo></UserInfo> */}
-      {/* <h2>Server side</h2> */}
-      {/* <p>{JSON.stringify(session)}</p> */}
       <FAQ></FAQ>
     </div>
   );
