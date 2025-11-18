@@ -8,7 +8,7 @@ export default async function DashLayout({ children }) {
   const session = await getServerSession(authOptions);
 
   if (!session?.user?.email) {
-    return redirect("/api/auth/login"); // server-side redirect
+    return redirect("/api/auth/signin"); // server-side redirect
   }
 
   const links = (

@@ -22,16 +22,16 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="bg-neutral">
-      <NextAuthSessionProvider>
-        <ReactQueryProvider>
-          <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral`}
-          >
-            <NavbarWrapper>{children}</NavbarWrapper>
-          </body>
-        </ReactQueryProvider>
-      </NextAuthSessionProvider>
+    <html lang="en" data-theme="light" className="bg-neutral">
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-neutral`}
+      >
+        <NextAuthSessionProvider>
+          <ReactQueryProvider>
+              <NavbarWrapper>{children}</NavbarWrapper>
+          </ReactQueryProvider>
+        </NextAuthSessionProvider>
+      </body>
     </html>
   );
 }

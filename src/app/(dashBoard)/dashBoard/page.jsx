@@ -42,7 +42,7 @@ export default function DashboardPage() {
       className="w-full md:max-w-4xl mx-auto my-0 md:py-8 p-6 bg-neutral"
     >
       {/* USER HEADER */}
-      <div className="flex flex-col items-center space-y-3">
+      <div className="flex flex-col md:flex-row md:justify-center md:gap-5 items-center space-y-3">
         <motion.img
           src={user.image}
           alt="Profile"
@@ -51,10 +51,12 @@ export default function DashboardPage() {
           animate={{ scale: 1 }}
           transition={{ duration: 0.5 }}
         />
-        <h1 className="text-3xl font-bold text-primary">{user.username}</h1>
-        <p className="text-secondary text-sm">
-          Member since: {new Date(user.createdAt).toDateString()}
-        </p>
+        <div>
+          <h1 className="text-3xl font-bold text-primary">{user.username}</h1>
+          <p className="text-secondary text-sm">
+            Member since: {new Date(user.createdAt).toDateString()}
+          </p>
+        </div>
       </div>
 
       {/* ✔ Profile Component instead of the big InfoCard section */}
