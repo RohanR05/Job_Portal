@@ -20,7 +20,7 @@ export default async function DashLayout({ children }) {
       <li>
         <Link
           href="/dashBoard"
-          className="flex items-center gap-2 text-secondary text-lg font-medium bg-accent hover:text-primary transition-transform duration-200 hover:scale-105"
+          className="flex items-center gap-2 text-secondary text-lg font-medium bg-neutral hover:text-primary transition-transform duration-200 hover:scale-105"
         >
           DashBoard
         </Link>
@@ -29,7 +29,7 @@ export default async function DashLayout({ children }) {
       <li>
         <Link
           href="/"
-          className="flex items-center gap-2 text-secondary text-lg font-medium bg-accent hover:text-primary transition-transform duration-200 hover:scale-105"
+          className="flex items-center gap-2 text-secondary text-lg font-medium bg-neutral hover:text-primary transition-transform duration-200 hover:scale-105"
         >
           Back Home
         </Link>
@@ -72,7 +72,7 @@ export default async function DashLayout({ children }) {
 
       <div className="drawer-side">
         <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
-        <ul className="menu bg-accent backdrop-blur-md min-h-full w-80 p-4 gap-3">
+        <ul className="menu bg-primary/20 md:bg-accent backdrop-blur-md min-h-full w-80 p-4 gap-3">
           {links}
         </ul>
       </div>

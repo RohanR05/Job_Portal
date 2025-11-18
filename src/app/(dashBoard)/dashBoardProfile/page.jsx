@@ -1,4 +1,5 @@
 import { authOptions } from "@/app/lib/authOptions";
+import Theme from "@/components/Theme/Theme";
 import { getServerSession } from "next-auth";
 import Image from "next/image";
 import React from "react";
@@ -10,7 +11,7 @@ const DashBoardProfile = async () => {
   if (!session) return <p>You are not logged in</p>;
 
   return (
-    <div className="w-full shadow-lg  rounded-2xl bg-accent">
+    <div className="w-full shadow-lg  rounded-2xl bg-neutral">
       {session.user.image && (
         <Image
           src={session.user.image}
@@ -22,9 +23,10 @@ const DashBoardProfile = async () => {
       )}{" "}
       <div className="w-full text-xl font-semibold">
         {" "}
-        <h2>{session.user.name}</h2>
+        <h2 className="text-primary font-bold">{session.user.name}</h2>
         <h2>Role: {session.user.role || "user"}</h2>
       </div>
+      <Theme></Theme>
     </div>
   );
 };

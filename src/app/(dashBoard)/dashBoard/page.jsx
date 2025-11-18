@@ -39,7 +39,7 @@ export default function DashboardPage() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
-      className="max-w-5xl mx-auto my-10 p-6 bg-accent rounded-2xl shadow-lg"
+      className="w-full md:max-w-4xl mx-auto my-0 md:py-8 p-6 bg-neutral"
     >
       {/* USER HEADER */}
       <div className="flex flex-col items-center space-y-3">
