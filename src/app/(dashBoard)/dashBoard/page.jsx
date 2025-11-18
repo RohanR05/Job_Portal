@@ -28,8 +28,7 @@ export default function DashboardPage() {
       signIn(undefined, { callbackUrl: "/login" });
   }, [status]);
 
-  if (status === "loading" || isLoading)
-    return <p className="text-center text-primary text-lg">Loading...</p>;
+  if (status === "loading" || isLoading) return null;
 
   if (error) return <p className="text-center text-red-500">{error.message}</p>;
   if (!user) return <p className="text-center text-warning">No user found</p>;
