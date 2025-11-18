@@ -1,12 +1,15 @@
 import { authOptions } from "@/app/lib/authOptions";
+import { getServerSession } from "next-auth/next";
 import dbConnect, { collectionNames } from "@/app/lib/dbConnect";
-import { getServerSession } from "next-auth";
 
-export async function GET() {
-  const session = await getServerSession(authOptions)// works only in server
+export async function GET(req) {
+  const session = await getServerSession(authOptions);
 
   if (!session?.user?.email) {
-    return Response.json({ message: "Unauthorized" }, { status: 401 });
+    return new Response(JSON.stringify({ message: "Unauthorized" }), {
+      status: 401,
+      headers: { "Content-Type": "application/json" },
+    });
   }
 
   const users = dbConnect(collectionNames.USER);
@@ -16,5 +19,8 @@ export async function GET() {
     { projection: { password: 0 } }
   );
 
-  return Response.json(user);
+  return new Response(JSON.stringify(user), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
 }

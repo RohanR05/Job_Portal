@@ -1,30 +1,23 @@
-// (dashBoard)/layout.jsx
-import React from "react";
-import DashBoardProfile from "./dashBoardProfile/page";
 import Link from "next/link";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/app/lib/authOptions";
+import { redirect } from "next/navigation";
+import DashBoardProfile from "./dashBoardProfile/page";
 
-const DashLayout = ({ children }) => {
+export default async function DashLayout({ children }) {
+  const session = await getServerSession(authOptions);
 
-    const { data: session, status } = useSession();
-
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      signIn(); // redirect to login
-    }
-  }, [status]);
-
-  if (status === "loading" || status === "unauthenticated") {
-    return <p>Loading...</p>; // optional loading state
+  if (!session?.user?.email) {
+    return redirect("/api/auth/login"); // server-side redirect
   }
-
 
   const links = (
     <>
       <li>
-        <DashBoardProfile></DashBoardProfile>
-      </li>{" "}
+        <DashBoardProfile />
+      </li>
+
       <li>
-        {" "}
         <Link
           href="/dashBoard"
           className="flex items-center gap-2 text-secondary text-lg font-medium bg-accent hover:text-primary transition-transform duration-200 hover:scale-105"
@@ -32,8 +25,8 @@ const DashLayout = ({ children }) => {
           DashBoard
         </Link>
       </li>
+
       <li>
-        {" "}
         <Link
           href="/"
           className="flex items-center gap-2 text-secondary text-lg font-medium bg-accent hover:text-primary transition-transform duration-200 hover:scale-105"
@@ -43,11 +36,12 @@ const DashLayout = ({ children }) => {
       </li>
     </>
   );
+
   return (
     <div className="drawer lg:drawer-open bg-neutral">
       <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
+
       <div className="drawer-content flex flex-col">
-        {/* Page content here */}
         <div className="navbar bg-accent w-full lg:hidden">
           <div className="flex-none lg:hidden">
             <label
@@ -66,28 +60,22 @@ const DashLayout = ({ children }) => {
                   strokeLinejoin="round"
                   strokeWidth="2"
                   d="M4 6h16M4 12h16M4 18h16"
-                ></path>
+                />
               </svg>
             </label>
           </div>
-          <div className="mx-2 flex-1 px-2">Navbar Title</div>
-          <div className="hidden flex-non bg-red-50 lg:block"></div>
+          <div className="mx-2 flex-1 px-2">Dashboard Panel</div>
         </div>
+
         {children}
       </div>
+
       <div className="drawer-side">
-        <label
-          htmlFor="my-drawer-2"
-          aria-label="close sidebar"
-          className="drawer-overlay"
-        ></label>
+        <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
         <ul className="menu bg-accent backdrop-blur-md min-h-full w-80 p-4 gap-3">
-          {/* Sidebar content here */}
           {links}
         </ul>
       </div>
     </div>
   );
-};
-
-export default DashLayout;
+}

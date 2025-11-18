@@ -5,7 +5,7 @@ import { signIn, useSession } from "next-auth/react";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import GoogleButton from "@/components/Button/GoogleButton";
 
 const Login = () => {
@@ -17,18 +17,16 @@ const Login = () => {
   } = useForm();
 
   const router = useRouter();
-  const searchParams = useSearchParams();
 
-  // ✅ Read and sanitize callbackUrl
-  const rawCallbackUrl = searchParams.get("callbackUrl") || "/dashBoard";
-  const callbackUrl = rawCallbackUrl.includes("/login") ? "/dashBoard" : rawCallbackUrl;
+  // ✅ Always redirect to home page
+  const callbackUrl = "/";
 
-  // ✅ Redirect if already logged in
+  // Redirect if user already logged in
   useEffect(() => {
     if (status === "authenticated") {
       router.push(callbackUrl);
     }
-  }, [status, router, callbackUrl]);
+  }, [status, router]);
 
   const onSubmit = async (data) => {
     const res = await signIn("credentials", {
@@ -53,7 +51,7 @@ const Login = () => {
         timer: 1500,
         showConfirmButton: false,
       }).then(() => {
-        router.push(callbackUrl);
+        router.push(callbackUrl); // always go home
       });
     }
   };
@@ -97,10 +95,7 @@ const Login = () => {
           )}
         </div>
 
-        <button
-          type="submit"
-          className="btn btn-primary w-full font-semibold text-neutral"
-        >
+        <button type="submit" className="btn btn-primary w-full font-semibold text-neutral">
           Login
         </button>
 
