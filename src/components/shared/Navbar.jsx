@@ -3,12 +3,19 @@ import Link from "next/link";
 import React from "react";
 import Logo from "./Logo";
 import Theme from "../Theme/Theme";
-import { FaHome, FaUserCheck, FaTachometerAlt } from "react-icons/fa";
+import {
+  FaHome,
+  FaUserCheck,
+  FaTachometerAlt,
+  FaBriefcase,
+} from "react-icons/fa";
 import { useSession } from "next-auth/react";
 import AvatarDropdown from "../Button/AvatarDropdown";
 
 const Navbar = () => {
   const { data: session, status } = useSession();
+
+  console.log(session?.user?.role);
 
   if (status === "loading") return null; // or a loader
 
@@ -26,6 +33,15 @@ const Navbar = () => {
           Apply
         </Link>
       </li>
+      {session?.user.role === "HR" && (
+        <li className="font-medium md:font-semibold text-secondary transition-all">
+          <Link href={"/createVacancy"} className="flex items-center gap-2">
+            <FaBriefcase className="text-primary text-lg" />
+            Post a Job
+          </Link>
+        </li>
+      )}
+
       <li className="font-medium md:font-semibold text-secondary transition-all">
         <Link href={"/dashBoard"} className="flex items-center gap-2">
           <FaTachometerAlt className="text-primary text-lg" />

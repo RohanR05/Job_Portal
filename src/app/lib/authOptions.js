@@ -7,37 +7,24 @@ export const authOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "jsmith@example.com",
-        },
+        email: { label: "Email", type: "email" },
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
         const { email, password } = credentials;
 
-        // Find user by email
         const user = await dbConnect(collectionNames.USER).findOne({ email });
         if (!user) return null;
 
-        // Compare password (plain text or hashed)
-        const isPasswordOK = password === user.password; // replace with bcrypt for production
+        const isPasswordOK = password === user.password;
         if (!isPasswordOK) return null;
 
-        // Exclude sensitive fields like password
         const { password: pwd, ...safeUser } = user;
-
-        // Convert _id to string
         safeUser._id = user._id.toString();
-
-        // Return the full safe user object
         return safeUser;
       },
     }),
-  ],
-  providers: [
+
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
@@ -45,16 +32,14 @@ export const authOptions = {
   ],
 
   callbacks: {
-    async signIn({ user, account, profile, email, credentials }) {
+    async signIn({ user, account }) {
       if (account?.provider === "google") {
         const userCollection = dbConnect(collectionNames.USER);
-        const existingUser = await userCollection.findOne({
-          email: user.email,
-        });
+        const existingUser = await userCollection.findOne({ email: user.email });
 
         if (!existingUser) {
           const newUser = {
-            username: user.name || "No Name",
+            username: user.name,
             email: user.email,
             password: "",
             phone: "",
@@ -70,23 +55,27 @@ export const authOptions = {
 
           const result = await userCollection.insertOne(newUser);
           user._id = result.insertedId.toString();
+          user.role = "user";
         } else {
           user._id = existingUser._id.toString();
+          user.role = existingUser.role; // IMPORTANT
         }
       }
+
       return true;
     },
-    // Store full user object in JWT token
+
+    // Store full user into JWT
     async jwt({ token, user }) {
       if (user) {
-        token.user = user; // store full user in token
+        token.user = user; // store full user object
       }
       return token;
     },
 
-    // Pass full user object to session
+    // Attach full user in session
     async session({ session, token }) {
-      session.user = token.user; // now session.user has all fields from DB
+      session.user = token.user; // full user object
       return session;
     },
   },
