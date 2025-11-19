@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
+
 import {
   FaHome,
   FaUserCheck,
@@ -11,31 +13,32 @@ import {
 
 const NavbarLinks = () => {
   const { data: session } = useSession();
+  const pathname = usePathname();
 
-  // Define all your links in an array
+  // All navbar links
   const links = [
     {
       href: "/",
       label: "Home",
-      icon: <FaHome className="text-primary text-lg" />,
-      roles: ["user", "HR"], // visible for all
+      icon: <FaHome />,
+      roles: ["user", "HR"],
     },
     {
       href: "/applyJob",
       label: "Apply",
-      icon: <FaUserCheck className="text-primary text-lg" />,
+      icon: <FaUserCheck />,
       roles: ["user", "HR"],
     },
     {
       href: "/createVacancy",
       label: "Post a Job",
-      icon: <FaBriefcase className="text-primary text-lg" />,
-      roles: ["HR"], // only HR sees this
+      icon: <FaBriefcase />,
+      roles: ["HR"],
     },
     {
       href: "/dashBoard",
       label: "Dashboard",
-      icon: <FaTachometerAlt className="text-primary text-lg" />,
+      icon: <FaTachometerAlt />,
       roles: ["user", "HR"],
     },
   ];
@@ -46,17 +49,32 @@ const NavbarLinks = () => {
         .filter(
           (link) => !link.roles || link.roles.includes(session?.user?.role)
         )
-        .map((link, idx) => (
-          <li
-            key={idx}
-            className="font-medium md:font-semibold text-secondary transition-all"
-          >
-            <Link href={link.href} className="flex items-center gap-2">
-              {link.icon}
-              {link.label}
-            </Link>
-          </li>
-        ))}
+        .map((link, idx) => {
+          const isActive = pathname === link.href;
+
+          return (
+            <li
+              key={idx}
+              className="font-medium md:font-semibold transition-all"
+            >
+              <Link
+                href={link.href}
+                className={`flex items-center gap-1 px-3 py-1 rounded-md transition-all duration-200
+                ${
+                  isActive
+                    ? "text-secondary font-bold scale-105 bg-accent"
+                    : "text-secondary hover:text-primary"
+                }
+              `}
+              >
+                {/* Icon also gets active color */}
+                <span className="text-primary">{link.icon}</span>
+
+                {link.label}
+              </Link>
+            </li>
+          );
+        })}
     </>
   );
 };
