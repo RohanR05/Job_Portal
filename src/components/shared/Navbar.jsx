@@ -1,16 +1,13 @@
 "use client";
-import Link from "next/link";
 import React from "react";
 import Logo from "./Logo";
 import Theme from "../Theme/Theme";
 import { useSession } from "next-auth/react";
 import AvatarDropdown from "../Button/AvatarDropdown";
-import NavbarLinks from "./NavbarLink";
+import NavbarLinks from "../Links/NavbarLink";
 
 const Navbar = () => {
   const { data: session, status } = useSession();
-
-  console.log(session?.user?.role);
 
   if (status === "loading") return null; // or a loader
 

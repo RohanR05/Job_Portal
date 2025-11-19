@@ -6,7 +6,6 @@ import React from "react";
 
 const DashBoardProfile = async () => {
   const session = await getServerSession(authOptions);
-  console.log(session);
 
   if (!session) return <p>You are not logged in</p>;
 
