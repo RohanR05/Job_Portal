@@ -5,6 +5,7 @@ import { useSession, signIn } from "next-auth/react";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import Profile from "@/components/DashBoardUi/Profile";
+import Loading from "../loading";
 
 export default function DashboardPage() {
   const { data: session, status } = useSession();
@@ -28,7 +29,7 @@ export default function DashboardPage() {
       signIn(undefined, { callbackUrl: "/login" });
   }, [status]);
 
-  if (status === "loading" || isLoading) return null;
+  if (status === "loading" || isLoading) return <Loading></Loading>;
 
   if (error) return <p className="text-center text-red-500">{error.message}</p>;
   if (!user) return <p className="text-center text-warning">No user found</p>;
