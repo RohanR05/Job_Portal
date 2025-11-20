@@ -1,18 +1,25 @@
-// "use client";
+"use client";
 
 import React from "react";
 import Link from "next/link";
-import DashBoardProfile from "@/app/(dashBoard)/dashBoardProfile/page";
+import { usePathname } from "next/navigation";
+import MiniProfile from "@/app/(dashBoard)/MiniProfile/page";
 
 const DashLayoutLinks = () => {
+  const pathname = usePathname();
+
   const links = [
     {
-      label: <DashBoardProfile />,
+      label: <MiniProfile />,
       href: null,
     },
     {
       label: "DashBoard",
       href: "/dashBoard",
+    },
+    {
+      label: "Profile",
+      href: "/dashBoardProfile",
     },
     {
       label: "Back Home",
@@ -22,20 +29,31 @@ const DashLayoutLinks = () => {
 
   return (
     <>
-      {links.map((link, idx) => (
-        <li key={idx}>
-          {link.href ? (
-            <Link
-              href={link.href}
-              className="flex items-center gap-2 text-secondary text-lg font-medium bg-neutral hover:text-primary transition-transform duration-200 hover:scale-105"
-            >
-              {link.label}
-            </Link>
-          ) : (
-            link.label
-          )}
-        </li>
-      ))}
+      {links.map((link, idx) => {
+        const isActive = link.href && pathname === link.href;
+
+        return (
+          <li key={idx}>
+            {link.href ? (
+              <Link
+                href={link.href}
+                className={`flex items-center gap-2 text-lg font-medium transition-transform duration-200 
+                hover:scale-105 
+                ${
+                  isActive
+                    ? "border-l-5 rounded-md border-primary bg-primary/20"
+                    : "text-secondary"
+                }
+                bg-neutral`}
+              >
+                {link.label}
+              </Link>
+            ) : (
+              link.label
+            )}
+          </li>
+        );
+      })}
     </>
   );
 };

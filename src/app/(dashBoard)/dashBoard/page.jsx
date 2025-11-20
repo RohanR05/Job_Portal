@@ -1,66 +1,11 @@
-"use client";
+import React from "react";
 
-import { useQuery } from "@tanstack/react-query";
-import { useSession, signIn } from "next-auth/react";
-import { useEffect } from "react";
-import { motion } from "framer-motion";
-import Profile from "@/components/DashBoardUi/Profile";
-import Loading from "../loading";
-
-export default function DashboardPage() {
-  const { data: session, status } = useSession();
-
-  const {
-    data: user,
-    isLoading,
-    error,
-  } = useQuery({
-    queryKey: ["currentUser"],
-    queryFn: async () => {
-      const res = await fetch("/api/user");
-      if (!res.ok) throw new Error("Not logged in");
-      return res.json();
-    },
-    enabled: status === "authenticated",
-  });
-
-  useEffect(() => {
-    if (status === "unauthenticated")
-      signIn(undefined, { callbackUrl: "/login" });
-  }, [status]);
-
-  if (status === "loading" || isLoading) return <Loading></Loading>;
-
-  if (error) return <p className="text-center text-red-500">{error.message}</p>;
-  if (!user) return <p className="text-center text-warning">No user found</p>;
-
+const page = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="w-full md:max-w-4xl mx-auto my-0 md:py-8 p-6 bg-neutral"
-    >
-      {/* USER HEADER */}
-      <div className="flex flex-col md:flex-row md:justify-center md:gap-5 items-center space-y-3">
-        <motion.img
-          src={user.image}
-          alt="Profile"
-          className="w-32 h-32 rounded-full border-4 border-primary shadow-md"
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.5 }}
-        />
-        <div>
-          <h1 className="text-3xl font-bold text-primary">{user.username}</h1>
-          <p className="text-secondary text-sm">
-            Member since: {new Date(user.createdAt).toDateString()}
-          </p>
-        </div>
-      </div>
-
-      {/* ✔ Profile Component instead of the big InfoCard section */}
-      <Profile user={user} />
-    </motion.div>
+    <div className="w-full h-screen  flex items-center justify-center">
+      <h2 className="text-3xl font-bold">DashBoard Layout</h2>
+    </div>
   );
-}
+};
+
+export default page;

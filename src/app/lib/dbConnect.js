@@ -12,7 +12,6 @@ function dbConnect(collectionName) {
     throw new Error("Missing MONGODB_URL in environment variables");
   }
 
-  // Reuse client to avoid multiple connections during dev
   if (!clientPromise) {
     client = new MongoClient(process.env.MONGODB_URL, {
       serverApi: {
@@ -20,7 +19,12 @@ function dbConnect(collectionName) {
         strict: true,
         deprecationErrors: true,
       },
+
+      // IMPORTANT FIX FOR NEXT.JS:
+      autoEncryption: undefined,
+      monitorCommands: false,
     });
+
     clientPromise = client.connect();
   }
 

@@ -14,6 +14,13 @@ const nextConfig = {
       },
     ],
   },
+
+  experimental: {
+    serverComponentsExternalPackages: ["mongodb"],
+  },
+
+  // Tell Next.js we want Turbopack
+  turbopack: {},
 };
 
 export default nextConfig;
